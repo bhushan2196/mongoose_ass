@@ -1,12 +1,14 @@
 const express = require("express");
 const connetion = require("./config/db");
 const userRoute = require("./routes/user.route");
+const productRoute = require("./routes/product.route");
 
 const PORT = 3000;
 const app = express();
 
 app.use(express.json());
 app.use("/user", userRoute);
+app.use("/product", productRoute);
 
 app.get("/", (req, res) => {
   res.send("home page is here");
