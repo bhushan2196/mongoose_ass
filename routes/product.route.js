@@ -27,4 +27,27 @@ productRoute.get("/get", async (req, res) => {
   }
 });
 
+productRoute.patch("/update/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const updateProduct = await productModel.findByIdAndUpdate(
+      { _id: id },
+      req.body
+    );
+    res.json({ msg: "product update", updateProduct });
+  } catch (error) {
+    res.send(error);
+  }
+});
+
+productRoute.delete("/delete/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const deleteProduct = await productModel.findByIdAndDelete({ _id: id });
+    res.json({ msg: "product delete", deleteProduct });
+  } catch (error) {
+    res.send(error);
+  }
+});
+
 module.exports = productRoute;
